@@ -66,6 +66,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   children: [
                     FlutterFlowIconButton(
                       borderColor: Colors.transparent,
+                      borderRadius: 30,
                       borderWidth: 1,
                       buttonSize: 60,
                       icon: Icon(

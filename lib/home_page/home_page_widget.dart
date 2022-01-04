@@ -1,11 +1,10 @@
 import '../auth/auth_util.dart';
 import '../buy_coins/buy_coins_widget.dart';
-import '../components/custom_close_icon_widget.dart';
+import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../forgot_password/forgot_password_widget.dart';
-import '../settings/settings_widget.dart';
 import '../sign_up/sign_up_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -40,16 +39,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         backgroundColor: Color(0xFF203040),
         automaticallyImplyLeading: false,
         actions: [
-          InkWell(
-            onTap: () async {
+          FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30,
+            borderWidth: 1,
+            buttonSize: 60,
+            icon: Icon(
+              Icons.close,
+              color: Color(0xFFC2C2C2),
+              size: 30,
+            ),
+            onPressed: () async {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsWidget(),
+                  builder: (context) => BuyCoinsWidget(),
                 ),
               );
             },
-            child: CustomCloseIconWidget(),
           ),
         ],
         centerTitle: true,
