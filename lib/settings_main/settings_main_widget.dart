@@ -58,7 +58,7 @@ class _SettingsMainWidgetState extends State<SettingsMainWidget> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       Container(
-                        width: 500,
+                        width: double.infinity,
                         height: 100,
                         decoration: BoxDecoration(
                           color: Color(0xFF233446),
@@ -155,7 +155,7 @@ class _SettingsMainWidgetState extends State<SettingsMainWidget> {
                     ),
                   ),
                   Container(
-                    width: 500,
+                    width: double.infinity,
                     height: 100,
                     decoration: BoxDecoration(
                       color: Color(0xFF233446),
@@ -248,7 +248,7 @@ class _SettingsMainWidgetState extends State<SettingsMainWidget> {
                 ],
               ),
               Container(
-                width: 500,
+                width: double.infinity,
                 height: 100,
                 decoration: BoxDecoration(
                   color: Color(0xFF233446),

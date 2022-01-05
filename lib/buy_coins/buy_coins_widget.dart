@@ -134,7 +134,7 @@ class _BuyCoinsWidgetState extends State<BuyCoinsWidget> {
                       children: [
                         Image.asset(
                           'assets/images/5559852.jpg',
-                          width: 500,
+                          width: double.infinity,
                           height: 200,
                           fit: BoxFit.cover,
                         ),
