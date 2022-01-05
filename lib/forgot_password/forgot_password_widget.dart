@@ -28,60 +28,67 @@ class _ForgotPasswordWidgetState extends State<ForgotPasswordWidget> {
       ),
       backgroundColor: Color(0xFF203040),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Align(
-                  alignment: AlignmentDirectional(0, -0.85),
-                  child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                    child: Icon(
-                      Icons.vpn_key_rounded,
-                      color: Color(0xFFB7B7B7),
-                      size: 50,
-                    ),
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            color: Color(0x00EEEEEE),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(0, -0.85),
+                    child: Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
-                      child: Text(
-                        'Please enter your registered email',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.bodyText1.override(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFFB7B7B7),
-                          fontSize: 12,
-                        ),
+                      child: Icon(
+                        Icons.vpn_key_rounded,
+                        color: Color(0xFFB7B7B7),
+                        size: 50,
                       ),
                     ),
-                  ],
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
-                    child: CustomEmailFieldWidget(),
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 50, 0, 0),
+                        child: Text(
+                          'Please enter your registered email',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.bodyText1.override(
+                            fontFamily: 'Poppins',
+                            color: Color(0xFFB7B7B7),
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-              child: CustomButtonCopyWidget(),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(30, 20, 30, 0),
+                      child: CustomEmailFieldWidget(),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                child: CustomButtonCopyWidget(),
+              ),
+            ],
+          ),
         ),
       ),
     );
