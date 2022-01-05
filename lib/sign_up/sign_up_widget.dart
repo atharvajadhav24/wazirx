@@ -174,13 +174,16 @@ class _SignUpWidgetState extends State<SignUpWidget> {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                  Align(
+                    alignment: AlignmentDirectional(0, 0),
                     child: Container(
+                      width: double.infinity,
                       height: 50,
-                      decoration: BoxDecoration(),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                      ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(50, 0, 50, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(50, 10, 50, 0),
                         child: CheckboxListTile(
                           value: checkboxListTileValue ??= false,
                           onChanged: (newValue) =>
