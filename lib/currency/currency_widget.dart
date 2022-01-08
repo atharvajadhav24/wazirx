@@ -1,3 +1,4 @@
+import '../backend/backend.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,14 @@ class _CurrencyWidgetState extends State<CurrencyWidget> {
       appBar: AppBar(
         backgroundColor: Color(0xFF233446),
         automaticallyImplyLeading: true,
+        title: Text(
+          'Currency Preference',
+          style: FlutterFlowTheme.bodyText1.override(
+            fontFamily: 'Poppins',
+            color: Color(0xFFC2C2C2),
+            fontSize: 18,
+          ),
+        ),
         actions: [],
         centerTitle: true,
         elevation: 4,
@@ -28,144 +37,127 @@ class _CurrencyWidgetState extends State<CurrencyWidget> {
       body: SafeArea(
         child: Container(
           width: double.infinity,
-          height: double.infinity,
+          height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
             color: Color(0x00EEEEEE),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Column(
+          child: StreamBuilder<List<CurrencyRecord>>(
+            stream: queryCurrencyRecord(
+              singleRecord: true,
+            ),
+            builder: (context, snapshot) {
+              // Customize what your widget looks like when it's loading.
+              if (!snapshot.hasData) {
+                return Center(
+                  child: SizedBox(
+                    width: 50,
+                    height: 50,
+                    child: CircularProgressIndicator(
+                      color: FlutterFlowTheme.primaryColor,
+                    ),
+                  ),
+                );
+              }
+              List<CurrencyRecord> mainContainerCurrencyRecordList =
+                  snapshot.data;
+              // Return an empty Container when the document does not exist.
+              if (snapshot.data.isEmpty) {
+                return Container();
+              }
+              final mainContainerCurrencyRecord =
+                  mainContainerCurrencyRecordList.isNotEmpty
+                      ? mainContainerCurrencyRecordList.first
+                      : null;
+              return Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Container(
-                        width: 500,
-                        height: 70,
-                        decoration: BoxDecoration(
-                          color: Color(0xFF142231),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                                child: Text(
-                                  'Select your preffered display currency for all markets',
-                                  style: FlutterFlowTheme.bodyText1.override(
-                                    fontFamily: 'Poppins',
-                                    color: Color(0xFFA8A8A8),
-                                    fontSize: 12,
-                                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+                    child: Text(
+                      'Select Your preferred display currency for all markets',
+                      textAlign: TextAlign.start,
+                      style: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Roboto',
+                        color: Color(0xFFC2C2C2),
+                        fontWeight: FontWeight.w300,
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Align(
+                      alignment: AlignmentDirectional(0, 0),
+                      child: StreamBuilder<List<CurrencyRecord>>(
+                        stream: queryCurrencyRecord(),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  color: FlutterFlowTheme.primaryColor,
                                 ),
                               ),
-                            ],
-                          ),
-                        ),
+                            );
+                          }
+                          List<CurrencyRecord> listViewCurrencyRecordList =
+                              snapshot.data;
+                          return ListView.builder(
+                            padding: EdgeInsets.zero,
+                            scrollDirection: Axis.vertical,
+                            itemCount: listViewCurrencyRecordList.length,
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewCurrencyRecord =
+                                  listViewCurrencyRecordList[listViewIndex];
+                              return Card(
+                                clipBehavior: Clip.antiAliasWithSaveLayer,
+                                color: Color(0xFF3A4E60),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(2),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      25, 20, 0, 20),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0, 0, 10, 0),
+                                        child: Text(
+                                          listViewCurrencyRecord.currencyName,
+                                          style: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Color(0xFFC2C2C2),
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            100, 0, 0, 0),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
                       ),
-                    ],
+                    ),
                   ),
                 ],
-              ),
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.zero,
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF233446),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                        child: Text(
-                          'USDT',
-                          style: FlutterFlowTheme.title2.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFC2C2C2),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF15232E),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                        child: Text(
-                          'BTC',
-                          style: FlutterFlowTheme.title2.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFC2C2C2),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF233446),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                        child: Text(
-                          'INR',
-                          style: FlutterFlowTheme.title2.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFC2C2C2),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF15232E),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                        child: Text(
-                          'IDR',
-                          style: FlutterFlowTheme.title2.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFC2C2C2),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 90,
-                      decoration: BoxDecoration(
-                        color: Color(0xFF233446),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(20, 30, 0, 0),
-                        child: Text(
-                          'RUB',
-                          style: FlutterFlowTheme.title2.override(
-                            fontFamily: 'Poppins',
-                            color: Color(0xFFC2C2C2),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              );
+            },
           ),
         ),
       ),
