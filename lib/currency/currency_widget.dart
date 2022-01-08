@@ -125,24 +125,50 @@ class _CurrencyWidgetState extends State<CurrencyWidget> {
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0, 0, 10, 0),
-                                        child: Text(
-                                          listViewCurrencyRecord.currencyName,
-                                          style: FlutterFlowTheme.bodyText1
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            color: Color(0xFFC2C2C2),
-                                            fontSize: 16,
+                                        child:
+                                            StreamBuilder<List<CurrencyRecord>>(
+                                          stream: queryCurrencyRecord(
+                                            singleRecord: true,
                                           ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            100, 0, 0, 0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [],
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50,
+                                                  height: 50,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: FlutterFlowTheme
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            List<CurrencyRecord>
+                                                textCurrencyRecordList =
+                                                snapshot.data;
+                                            // Return an empty Container when the document does not exist.
+                                            if (snapshot.data.isEmpty) {
+                                              return Container();
+                                            }
+                                            final textCurrencyRecord =
+                                                textCurrencyRecordList
+                                                        .isNotEmpty
+                                                    ? textCurrencyRecordList
+                                                        .first
+                                                    : null;
+                                            return Text(
+                                              listViewCurrencyRecord
+                                                  .currencyName,
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFFC2C2C2),
+                                                fontSize: 16,
+                                              ),
+                                            );
+                                          },
                                         ),
                                       ),
                                     ],
